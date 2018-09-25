@@ -10,11 +10,11 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController, 
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController) { 
   }
 
   showAlert() {
-    const alert = this.alertCtrl.create({
+    const alert = this.alertCtrl.create({ 
       title: 'Olá Mundo!',
       subTitle: 'Lorem ipsum dolor et mascadas helous mundus!',
       buttons: ['OK']
