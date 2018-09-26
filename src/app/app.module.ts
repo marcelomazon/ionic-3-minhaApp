@@ -11,6 +11,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
+import { MovieProvider } from '../providers/movie/movie';
+import { HttpModule } from '@angular/http';
+import { DeputadosProvider } from '../providers/deputados/deputados';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   imports: [
     BrowserModule,
     FeedPageModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -36,7 +40,9 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MovieProvider,
+    DeputadosProvider
   ]
 })
 export class AppModule {}

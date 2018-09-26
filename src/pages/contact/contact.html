@@ -1,17 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Deputados Federais
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+  <ion-card *ngFor="let deputado of lista_deputados">
+
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <button ion-item>
+        <ion-avatar item-start>
+          <img [src]="deputado.urlFoto">
+        </ion-avatar>
+        <h2>{{deputado.nome}}</h2>
+        <p>Partido: {{deputado.siglaPartido}}</p>
+      </button>
     </ion-item>
-  </ion-list>
+
+  </ion-card>
 </ion-content>
