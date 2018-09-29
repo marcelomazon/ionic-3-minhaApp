@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { DeputadosProvider } from '../../providers/deputados/deputados';
 
 /**
@@ -20,6 +20,8 @@ import { DeputadosProvider } from '../../providers/deputados/deputados';
 export class ContactPage {
 
   public lista_deputados = new Array<any>();
+  public loading;
+
   data: any;
   users: string[];
   errorMessage: string;
@@ -31,10 +33,25 @@ export class ContactPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private DeputadosProvider: DeputadosProvider) {
+    private DeputadosProvider: DeputadosProvider,
+    public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  abrirCarregando() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: 'Carregando...'
+    });
+    this.loading.present();
+  }
+
+  fecharCarregando() {
+    this.loading.dismiss();
+  }
+
+  //ionViewDidLoad() { // executa apenas na 1a. vez q carrega o aplicativo
+  ionViewDidEnter() {
+    this.abrirCarregando();
     console.log('ionViewDidLoad contactPage');
 
     this.DeputadosProvider.getDeputados()
@@ -43,9 +60,14 @@ export class ContactPage {
           const response = (data as any);
           const obj_retorno = JSON.parse(response._body);
           this.lista_deputados = obj_retorno.dados;
+          this.fecharCarregando();
           console.log(obj_retorno);
         },
-        error =>  this.errorMessage = <any>error
+        error => {
+          this.fecharCarregando();
+          this.errorMessage = <any>error;
+          console.log(this.errorMessage);
+        }
       )
   }
 
