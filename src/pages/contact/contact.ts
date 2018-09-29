@@ -20,6 +20,13 @@ import { DeputadosProvider } from '../../providers/deputados/deputados';
 export class ContactPage {
 
   public lista_deputados = new Array<any>();
+  data: any;
+  users: string[];
+  errorMessage: string;
+  page = 1;
+  perPage = 0;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -30,14 +37,16 @@ export class ContactPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad contactPage');
 
-    this.DeputadosProvider.getDeputados().subscribe(
-      data => {
-        const response = (data as any);
-        const obj_retorno = JSON.parse(response._body);
-        this.lista_deputados = obj_retorno.dados;
-        console.log(obj_retorno);
-      }
-    )
+    this.DeputadosProvider.getDeputados()
+      .subscribe(
+        data => {
+          const response = (data as any);
+          const obj_retorno = JSON.parse(response._body);
+          this.lista_deputados = obj_retorno.dados;
+          console.log(obj_retorno);
+        },
+        error =>  this.errorMessage = <any>error
+      )
   }
 
 }

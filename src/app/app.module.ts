@@ -14,6 +14,11 @@ import { FeedPageModule } from '../pages/feed/feed.module';
 import { MovieProvider } from '../providers/movie/movie';
 import { HttpModule } from '@angular/http';
 import { DeputadosProvider } from '../providers/deputados/deputados';
+import { ConfigProvider } from '../providers/config/config';
+import { IntroPageModule } from '../pages/intro/intro.module';
+import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
+import { SobrePageModule } from '../pages/sobre/sobre.module';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 @NgModule({
   declarations: [
@@ -21,12 +26,16 @@ import { DeputadosProvider } from '../providers/deputados/deputados';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
     FeedPageModule,
+    IntroPageModule,
     HttpModule,
+    ConfiguracoesPageModule,
+    SobrePageModule,
+    PerfilPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -42,7 +51,8 @@ import { DeputadosProvider } from '../providers/deputados/deputados';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MovieProvider,
-    DeputadosProvider
+    DeputadosProvider,
+    ConfigProvider
   ]
 })
 export class AppModule {}
