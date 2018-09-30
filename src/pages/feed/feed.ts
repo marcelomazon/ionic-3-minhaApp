@@ -25,6 +25,8 @@ export class FeedPage {
   public loading;
   public refresher;
   public isRefreshing = false;
+  public pagina = 1;
+  public infiniteScroll;
 
   constructor(
     public navCtrl: NavController,
@@ -44,6 +46,7 @@ export class FeedPage {
   doRefresh(refresher) {
     this.refresher = refresher;
     this.isRefreshing = true;
+    this.pagina = 1;
     this.carregarFilmes();
   }
 
@@ -54,31 +57,45 @@ export class FeedPage {
     }
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.carregarFilmes();
   }
 
   abrirDetalhe(filme) {
     console.log(filme);
-    this.navCtrl.push(FeedDetalhePage, {id: filme.id});
+    this.navCtrl.push(FeedDetalhePage, { id: filme.id });
   }
 
-  carregarFilmes() {
+  doInfinite(infiniteScroll) {
+    this.pagina++;
+    this.infiniteScroll = infiniteScroll;
+    this.carregarFilmes(true);
+  }
+
+  carregarFilmes(novaPagina: boolean = false) {
     this.showLoading();
-    this.movieProvider.getLastMovies().subscribe(
-      data => {
-        const response = (data as any);
-        const obj_retorno = JSON.parse(response._body);
-        this.lista_filmes = obj_retorno.results;
-        console.log(obj_retorno);
-        this.fecharRefresh();
-        this.loading.dismiss();
-      },
-      error => {
-        console.log(error);
-        this.fecharRefresh();
-        this.loading.dismiss();
-      }
-    )
+    this.movieProvider.getLastMovies(this.pagina)
+      .subscribe(
+        data => {
+          const response = (data as any);
+          const obj_retorno = JSON.parse(response._body);
+
+          if (novaPagina) {
+            console.log('nova pagina: '+this.pagina)
+            this.lista_filmes = this.lista_filmes.concat(obj_retorno.results);
+            this.infiniteScroll.complete();
+          } else {
+            console.log('pagina normal: '+this.pagina);
+            this.lista_filmes = obj_retorno.results;
+          }
+          this.fecharRefresh();
+          this.loading.dismiss();
+        },
+        error => {
+          console.log(error);
+          this.fecharRefresh();
+          this.loading.dismiss();
+        }
+      )
   }
 }
