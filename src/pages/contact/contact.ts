@@ -23,14 +23,9 @@ export class ContactPage {
   public refresher;
   public isRefreshing = false;
   public loading;
-
-  data: any;
-  users: string[];
-  errorMessage: string;
-  page = 1;
-  perPage = 0;
-  totalData = 0;
-  totalPage = 0;
+  public errorMessage;
+  public infiniteScroll;
+  public url_next = "";
 
   constructor(
     public navCtrl: NavController,
@@ -58,6 +53,15 @@ export class ContactPage {
       this.isRefreshing = false;
       this.refresher.complete();
     }
+    if (this.infiniteScroll)
+      this.infiniteScroll.complete();
+
+    this.loading.dismiss();
+  }
+
+  doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
+    this.carregarDeputados();
   }
 
   ionViewDidLoad() {
@@ -67,19 +71,18 @@ export class ContactPage {
   }
 
   carregarDeputados() {
-    this.DeputadosProvider.getDeputados()
+    this.DeputadosProvider.getDeputados(this.url_next)
       .subscribe(
         data => {
           const response = (data as any);
           const obj_retorno = JSON.parse(response._body);
-          this.lista_deputados = obj_retorno.dados;
+          this.lista_deputados = this.lista_deputados.concat(obj_retorno.dados);
+          this.url_next = obj_retorno.links[1].href;
           this.fecharRefresh();
-          this.loading.dismiss();
-          console.log(obj_retorno);
+          console.log(obj_retorno, this.url_next);
         },
         error => {
           this.fecharRefresh();
-          this.loading.dismiss();
           this.errorMessage = <any>error;
           console.log(this.errorMessage);
         }
