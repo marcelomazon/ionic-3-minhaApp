@@ -7,12 +7,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>FeedDetalhe</ion-title>
+    <ion-title>Detalhes do Filme</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card *ngIf="filme">
+    <ion-item>
+      <ion-avatar item-start>
+        <ion-icon name="ios-film"></ion-icon>
+      </ion-avatar>
+      <h2>{{filme.original_title}}</h2>
+      <p>Data de lançamento: {{filme.release_date}}</p>
+    </ion-item>
 
+    <img [src]="'https://image.tmdb.org/t/p/w500/'+filme.poster_path">
+
+    <ion-card-content>
+      <p>{{filme.overview}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{filme.vote_count}} Votos</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>Nota: {{filme.vote_average}}</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          Idioma: {{filme.original_language}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
 </ion-content>
