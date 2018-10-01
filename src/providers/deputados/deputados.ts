@@ -12,13 +12,21 @@ import 'rxjs/add/operator/map';
 export class DeputadosProvider {
 
   private url_base = "https://dadosabertos.camara.leg.br/api/v2";
+  private url_busca = "";
 
   constructor(public http: Http) {
     console.log('Hello DeputadosProvider Provider');
   }
 
-  getDeputados(){
-    return this.http.get(this.url_base+"/deputados");
+  getDeputados(url: string = "") {
+    this.url_busca = (url !== "") ? url : this.url_base + "/deputados";
+    return this.http.get(this.url_busca);
+  }
+
+  getDetalheDeputado(deputadoId) {
+    this.url_busca = this.url_base + "/deputados/" + deputadoId;
+    console.log(this.url_busca);
+    return this.http.get(this.url_busca);
   }
 
 }

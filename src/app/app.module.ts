@@ -19,6 +19,8 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
 import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { FeedDetalhePageModule } from '../pages/feed-detalhe/feed-detalhe.module';
+import { ContatoDetalhePageModule } from '../pages/contato-detalhe/contato-detalhe.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
     ConfiguracoesPageModule,
     SobrePageModule,
     PerfilPageModule,
+    FeedDetalhePageModule,
+    ContatoDetalhePageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
