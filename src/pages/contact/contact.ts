@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { DeputadosProvider } from '../../providers/deputados/deputados';
+import { ContatoDetalhePage } from '../contato-detalhe/contato-detalhe';
 
 /**
  * Generated class for the contactPage page.
@@ -26,12 +27,14 @@ export class ContactPage {
   public errorMessage;
   public infiniteScroll;
   public url_next = "";
+  public modalDetalhe;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private DeputadosProvider: DeputadosProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController) {
   }
 
   showLoading() {
@@ -70,6 +73,20 @@ export class ContactPage {
     this.carregarDeputados();
   }
 
+  showModalDetalhe(id: number = 0) {
+    this.modalDetalhe = this.modalCtrl.create(ContatoDetalhePage, { deputadoId: id });
+    this.modalDetalhe.present();
+
+    this.modalDetalhe.onDidDismiss(data => {  
+      console.log(data);
+    });
+
+  }
+
+  fecharModalDetalhe() {
+    this.modalDetalhe.dismiss();
+  }
+  
   carregarDeputados() {
     this.DeputadosProvider.getDeputados(this.url_next)
       .subscribe(

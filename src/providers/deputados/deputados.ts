@@ -19,7 +19,13 @@ export class DeputadosProvider {
   }
 
   getDeputados(url: string = "") {
-    this.url_busca = (url !== "")? url : this.url_base + "/deputados";
+    this.url_busca = (url !== "") ? url : this.url_base + "/deputados";
+    return this.http.get(this.url_busca);
+  }
+
+  getDetalheDeputado(deputadoId) {
+    this.url_busca = this.url_base + "/deputados/" + deputadoId;
+    console.log(this.url_busca);
     return this.http.get(this.url_busca);
   }
 

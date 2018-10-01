@@ -14,7 +14,7 @@
   <ion-card *ngFor="let deputado of lista_deputados">
 
     <ion-item>
-      <button ion-item>
+      <button ion-item (click)="showModalDetalhe(deputado.id)">
         <ion-avatar item-start>
           <img [src]="deputado.urlFoto">
         </ion-avatar>
