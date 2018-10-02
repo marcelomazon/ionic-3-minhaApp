@@ -1,5 +1,11 @@
 {
   "name": "minhaApp",
   "integrations": {},
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/cartolaapi",
+      "proxyUrl": "https://api.cartolafc.globo.com"
+    }
+  ]
 }

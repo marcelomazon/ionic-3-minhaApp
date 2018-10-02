@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { FeedPage } from '../feed/feed';
 import { PerfilPage } from '../perfil/perfil';
 import { ConfiguracoesPage } from '../configuracoes/configuracoes';
+import { AtletasPage } from '../atletas/atletas';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -13,10 +14,11 @@ import { ConfiguracoesPage } from '../configuracoes/configuracoes';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
+  //tab2Root = AboutPage;
   tab3Root = ContactPage;
   tab4Root = FeedPage;
   tab5Root = ConfiguracoesPage;
+  tab6Root = AtletasPage;
 
   constructor() {}
 }

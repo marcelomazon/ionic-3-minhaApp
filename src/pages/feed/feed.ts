@@ -23,53 +23,16 @@ export class FeedPage {
   public nome_usuario = "Marcelo Mazon";
   public lista_filmes = new Array<any>();
   public loading;
-<<<<<<< HEAD
-=======
   public refresher;
   public isRefreshing = false;
   public pagina = 1;
   public infiniteScroll;
->>>>>>> bca06a617ef564785e76441b655e843400c862b0
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private movieProvider: MovieProvider,
     public loadingCtrl: LoadingController) {
-<<<<<<< HEAD
-  }
-
-  abrirCarregando() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'dots',
-      content: 'Carregando...'
-    });
-    this.loading.present();
-  }
-
-  fecharCarregando() {
-    this.loading.dismiss();
-  }
-
-  //ionViewDidLoad() { // executado apenas na 1a vez q a página é carregada
-  ionViewDidEnter() {
-    this.abrirCarregando();
-    console.log('ionViewDidLoad FeedPage');
-
-    this.movieProvider.getLastMovies().subscribe(
-      data => {
-        const response = (data as any);
-        const obj_retorno = JSON.parse(response._body);
-        this.lista_filmes = obj_retorno.results;
-        console.log(obj_retorno);
-        this.fecharCarregando();
-      },
-      error => {
-        this.fecharCarregando();
-        console.log(error);
-      }
-    );
-=======
   }
 
   showLoading() {
@@ -107,7 +70,6 @@ export class FeedPage {
     this.pagina++;
     this.infiniteScroll = infiniteScroll;
     this.carregarFilmes(true);
->>>>>>> bca06a617ef564785e76441b655e843400c862b0
   }
 
   carregarFilmes(novaPagina: boolean = false) {

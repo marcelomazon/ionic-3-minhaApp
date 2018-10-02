@@ -21,6 +21,8 @@ import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { FeedDetalhePageModule } from '../pages/feed-detalhe/feed-detalhe.module';
 import { ContatoDetalhePageModule } from '../pages/contato-detalhe/contato-detalhe.module';
+import { CartolaProvider } from '../providers/cartola/cartola';
+import { AtletasPageModule } from '../pages/atletas/atletas.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { ContatoDetalhePageModule } from '../pages/contato-detalhe/contato-detal
     PerfilPageModule,
     FeedDetalhePageModule,
     ContatoDetalhePageModule,
+    AtletasPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -56,7 +59,8 @@ import { ContatoDetalhePageModule } from '../pages/contato-detalhe/contato-detal
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MovieProvider,
     DeputadosProvider,
-    ConfigProvider
+    ConfigProvider,
+    CartolaProvider
   ]
 })
 export class AppModule {}
