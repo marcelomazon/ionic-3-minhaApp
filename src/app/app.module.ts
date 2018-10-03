@@ -23,6 +23,7 @@ import { FeedDetalhePageModule } from '../pages/feed-detalhe/feed-detalhe.module
 import { ContatoDetalhePageModule } from '../pages/contato-detalhe/contato-detalhe.module';
 import { CartolaProvider } from '../providers/cartola/cartola';
 import { AtletasPageModule } from '../pages/atletas/atletas.module';
+import { CameraPageModule } from '../pages/camera/camera.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AtletasPageModule } from '../pages/atletas/atletas.module';
     FeedDetalhePageModule,
     ContatoDetalhePageModule,
     AtletasPageModule,
+    CameraPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

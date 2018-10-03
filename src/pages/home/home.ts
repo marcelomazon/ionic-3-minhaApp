@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config';
 import { IntroPage } from '../intro/intro';
+import { CameraPage } from '../camera/camera';
 
 @Component({
   selector: 'page-home',
@@ -29,7 +30,7 @@ export class HomePage {
   showConfirmacao() {
     const confirm = this.alertCtrl.create({
       title: 'Confirmação:',
-      message: 'Deseja realmente resetar as configurações?',
+      message: 'Deseja realmente tirar foto?',
       buttons: [
         {
           text: 'Não',
@@ -40,8 +41,9 @@ export class HomePage {
         {
           text: 'Sim',
           handler: () => {
-            this.configProvider.clearDadosConfig();
-            this.navCtrl.setRoot(IntroPage);
+            //this.configProvider.clearDadosConfig();
+            //this.navCtrl.setRoot(IntroPage);
+            this.navCtrl.push(CameraPage);
             console.log('Agree clicked');
           }
         }

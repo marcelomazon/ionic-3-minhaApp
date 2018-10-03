@@ -1,6 +1,8 @@
 {
   "name": "minhaApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "proxies": [
     {
